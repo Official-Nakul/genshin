@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Character = require("./../model/character");
+const { json } = require("body-parser");
+//const character = require( "./../model/character" );
 
 router.post("/", async (req, res) => {
   try {
@@ -25,4 +27,15 @@ router.get("/:element", async (req, res) => {
     res.status(500).send(e);
   }
 });
+
+router.get("/", async (req, res) => {
+  try {
+    const data = await Character.find();
+    res.status(200).send(data);
+  } catch (e) {
+    console.log("Error: ", e);
+    res.status(404).send(json({ Error: e }));
+  }
+});
+
 module.exports = router;
