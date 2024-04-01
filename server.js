@@ -12,6 +12,9 @@ const PORT = process.env.PORT || 3000;
 const characterRoute = require("./Routes/characterRoute");
 
 app.use("/character", characterRoute);
+app.get("/", (req, res) => {
+  res.send("Yup it is working");
+});
 
 app.listen(PORT, () => {
   console.log("server listening on 3000");
